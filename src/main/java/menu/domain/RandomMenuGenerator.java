@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 
-public final class RandomMenuGenerator implements RandomNumberGenerator {
+public class RandomMenuGenerator implements RandomNumberGenerator {
     private static final int CATEGORY_LOWER_BOUND = 1;
     private static final int CATEGORY_UPPER_BOUND = 5;
 
