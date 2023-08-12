@@ -52,10 +52,10 @@ public final class Coach {
 
     private int findCategory(String menu) {
         MenuData findMenuData = Arrays.stream(MenuData.values())
-                .filter(e ->
-                        e.menus().equals(menu))
-                .findAny()
-                .get();
+                .filter(e -> e.menus().equals(menu))
+                .findAny().orElse(null);
+
+        if (findMenuData == null) return -1;
 
         return findMenuData.category();
     }
