@@ -1,5 +1,9 @@
 package menu.view;
 
+import menu.domain.Coach;
+
+import java.util.List;
+
 public final class OutputView {
 
     static {
@@ -18,8 +22,18 @@ public final class OutputView {
         System.out.println(coach + "(이)가 못 먹는 메뉴를 입력해 주세요");
     }
 
-    public void printMenuResult(String coach) {
-        System.out.println(coach + "(이)가 못 먹는 메뉴를 입력해 주세요");
+    public void printMenuResult(List<Coach> coaches) {
+        System.out.println("메뉴 추천 결과입니다.");
+
+        coaches.forEach(this::printResultInformaiton);
+        System.out.println("추천을 완료했습니다.");
     }
 
+    private void printResultInformaiton(Coach coach) {
+        StringBuilder sb = new StringBuilder(coach.getName());
+        coach.getEatenMenus().forEach(sb::append);
+
+        String print = String.join(" | ", sb.toString());
+        System.out.println("[ " + print + " ]");
+    }
 }

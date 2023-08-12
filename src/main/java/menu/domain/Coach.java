@@ -10,9 +10,19 @@ public final class Coach {
     private static final int MIN_NAME_LENGTH = 2;
     private static final int MAX_NAME_LENGTH = 4;
     private static final int CATEGORY_OVERLAP_LIMIT_SIZE = 2;
-    private String name;
+
     List<String> eatenMenus;
     List<String> banMenus;
+
+    public String getName() {
+        return name;
+    }
+
+    private String name;
+
+    public List<String> getEatenMenus() {
+        return eatenMenus;
+    }
 
     private Coach() {
     }
@@ -40,6 +50,7 @@ public final class Coach {
 
         int category = findCategory(menu);
         int size = getNumberOfSameCategory(category);
+
 
         return size < CATEGORY_OVERLAP_LIMIT_SIZE;
     }

@@ -24,9 +24,8 @@ public final class MenuSystem {
 
     private String getPossibleMenu(List<String> pickedMenu, Coach coach) {
         String menu = menuGenerator.generate();
-
         if (pickedMenu.contains(menu) || coach.isPossibleMenu(menu)) return getPossibleMenu(pickedMenu, coach);
-
+        coach.eatenMenus.add(menu);
         return menu;
     }
 
