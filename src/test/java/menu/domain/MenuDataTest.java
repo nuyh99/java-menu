@@ -5,8 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MenuDataTest {
-
-
     @Test
     @DisplayName("ASIAN이 4번이 맞으면 True를 반환한다.")
     void validCategoryMatched() {
@@ -27,5 +25,4 @@ class MenuDataTest {
         MenuData menuData = MenuData.CHINA;
         Assertions.assertThat(menuData.menus().contains("규동")).isFalse();
     }
-
 }
