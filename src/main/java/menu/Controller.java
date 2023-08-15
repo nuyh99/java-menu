@@ -28,7 +28,7 @@ public final class Controller {
             recommendMenus(menuSystem, i, coaches);
         }
 
-        outputView.printMenuResult(coaches);
+        outputView.printMenuResult(menuSystem.getCategoryOfWeek(), coaches);
     }
 
     private void recommendMenus(MenuSystem menuSystem, int day, List<Coach> coaches) {
@@ -49,8 +49,8 @@ public final class Controller {
 
     private List<String> getCoachesName() {
         outputView.printInputCoachesName();
-        List<String> names = inputView.readCoachesName();
-        return names;
+
+        return inputView.readCoachesName();
     }
 
     private List<String> getBanMenus(String coach) {

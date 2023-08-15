@@ -1,12 +1,17 @@
 package menu.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public final class MenuSystem {
     private static final int MAX_SIZE_SAME_CATEGORY = 2;
     private final RandomNumberGenerator menuGenerator;
-    private final List<Integer> categoryOfWeek;
+    private final List<String> categoryOfWeek;
+
+    public List<String> getCategoryOfWeek() {
+        return categoryOfWeek;
+    }
 
     public MenuSystem(RandomNumberGenerator menuGenerator) {
         this.menuGenerator = menuGenerator;
@@ -18,7 +23,16 @@ public final class MenuSystem {
         coaches.forEach(coach -> {
             decideMenu(selectedCategory, coach);
         });
-        categoryOfWeek.add(selectedCategory);
+        categoryOfWeek.add(convertCategoryToName(selectedCategory));
+    }
+
+    private String convertCategoryToName(int category) {
+        return Arrays.stream(MenuData.values())
+                .filter(data -> data.category() == category)
+                .findAny()
+                .map(MenuData::getName)
+                .orElse(null);
+
     }
 
     private int pickCategory(int day) {
@@ -30,8 +44,9 @@ public final class MenuSystem {
     }
 
     private boolean isValidCategory(int category) {
+        String name = convertCategoryToName(category);
         return categoryOfWeek.stream()
-                .filter(e -> e == category)
+                .filter(e -> e.equals(name))
                 .count() < MAX_SIZE_SAME_CATEGORY;
     }
 
