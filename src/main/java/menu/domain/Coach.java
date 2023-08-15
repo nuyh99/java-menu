@@ -46,7 +46,7 @@ public final class Coach {
     }
 
     public boolean isPossibleMenu(String menu) {
-        if (banMenus.contains(menu)) return false;
+        if (banMenus.contains(menu) || eatenMenus.contains(menu)) return false;
 
         int category = findCategory(menu);
         int size = getNumberOfSameCategory(category);
