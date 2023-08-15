@@ -4,29 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class MenuSystem {
+    private static final int MAX_SIZE_SAME_CATEGORY = 2;
     private final RandomNumberGenerator menuGenerator;
-    private final List<List<String>> menuResultOfWeek;
+    private final List<Integer> categoryOfWeek;
 
     public MenuSystem(RandomNumberGenerator menuGenerator) {
         this.menuGenerator = menuGenerator;
-        menuResultOfWeek = new ArrayList<>();
+        categoryOfWeek = new ArrayList<>();
     }
 
     public void makeMenusOfDay(int day, List<Coach> coaches) {
-        List<String> pickedMenu = new ArrayList<>();
-
+        int selectedCategory = pickCategory(day);
         coaches.forEach(coach -> {
-            pickedMenu.add(getPossibleMenu(pickedMenu, coach));
+            decideMenu(selectedCategory, coach);
         });
-
-        menuResultOfWeek.add(pickedMenu);
+        categoryOfWeek.add(selectedCategory);
     }
 
-    private String getPossibleMenu(List<String> pickedMenu, Coach coach) {
-        String menu = menuGenerator.generate();
-        if (pickedMenu.contains(menu) || coach.isPossibleMenu(menu)) return getPossibleMenu(pickedMenu, coach);
+    private int pickCategory(int day) {
+        int category = menuGenerator.generate();
+        boolean possible = isValidCategory(category);
+
+        if (!possible) return pickCategory(day);
+        return category;
+    }
+
+    private boolean isValidCategory(int category) {
+        return categoryOfWeek.stream()
+                .filter(e -> e == category)
+                .count() < MAX_SIZE_SAME_CATEGORY;
+    }
+
+    private void decideMenu(int category, Coach coach) {
+        String menu = ((RandomMenuGenerator) menuGenerator).getMenuFromCategory(category);
+
+        if (!coach.isPossibleMenu(menu)) {
+            decideMenu(category, coach);
+            return;
+        }
         coach.eatenMenus.add(menu);
-        return menu;
     }
-
 }
