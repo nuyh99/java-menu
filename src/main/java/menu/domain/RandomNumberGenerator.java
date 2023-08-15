@@ -1,5 +1,6 @@
 package menu.domain;
 
-interface RandomNumberGenerator {
-    String generate();
+public interface RandomNumberGenerator {
+    int generate();
+
 }

@@ -10,19 +10,18 @@ public class RandomMenuGenerator implements RandomNumberGenerator {
     private static final int CATEGORY_UPPER_BOUND = 5;
 
     @Override
-    public String generate() {
-        int category = Randoms.pickNumberInRange(CATEGORY_LOWER_BOUND, CATEGORY_UPPER_BOUND);
-
-        List<String> menus = getMenusByCategory(category).menus();
-        if (menus == null) return generate();
-
-        return Randoms.shuffle(menus).get(0);
+    public int generate() {
+        return Randoms.pickNumberInRange(CATEGORY_LOWER_BOUND, CATEGORY_UPPER_BOUND);
     }
 
-    private MenuData getMenusByCategory(int category) {
-        return Arrays.stream(MenuData.values())
-                .filter(menu -> menu.category() == category)
+    public String getMenuFromCategory(int category) {
+        List<String> menus = Arrays.stream(MenuData.values())
+                .filter(entity -> entity.category() == category)
                 .findAny()
+                .map(MenuData::menus)
                 .orElse(null);
+
+        if (menus == null) return "";
+        return Randoms.shuffle(menus).get(0);
     }
 }
