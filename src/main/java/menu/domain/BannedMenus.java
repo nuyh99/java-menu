@@ -18,4 +18,8 @@ public class BannedMenus {
             throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴는 0 ~ 2개여야 합니다.");
         }
     }
+    
+    public boolean hasBanned(final String menu) {
+        return menus.contains(menu);
+    }
 }
