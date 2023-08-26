@@ -1,5 +1,6 @@
 package menu.domain;
 
+import menu.domain.coach.BannedMenus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -30,7 +30,7 @@
     - 숫자를 가진다
     - 메뉴 리스트를 가진다
     - 메뉴를 추천한다
-        - [ ] MenuPicker
+        - [x] MenuPicker
             - 셔플하고 0번 인덱스를 리턴하는 애
 
 ### 카테고리와 메뉴 요구 사항
@@ -55,6 +55,7 @@ String category=categories.get(Randoms.pickNumberInRange(1,5));
 
 ```java
 String menu=Randoms.shuffle(menus).get(0);
+        String menu=picker.getNextMenu(menus);
 ```
 
 # 입출력 요구 사항
