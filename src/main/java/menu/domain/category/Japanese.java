@@ -12,7 +12,7 @@ public class Japanese extends Category {
         super(number, menus);
     }
 
-    public static Japanese create() {
+    protected static Japanese create() {
         return new Japanese(number, menus);
     }
 }

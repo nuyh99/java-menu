@@ -1,12 +1,13 @@
 package menu.domain.coach;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Coach {
 
     private final Name name;
-    private final BannedMenus bannedMenus;
+    private BannedMenus bannedMenus;
     private final EatenMenus eatenMenus;
 
     private Coach(final Name name, final BannedMenus bannedMenus, final EatenMenus eatenMenus) {
@@ -19,6 +20,18 @@ public class Coach {
         final BannedMenus bannedMenus = new BannedMenus(new ArrayList<>());
         final EatenMenus eatenMenus = new EatenMenus(new ArrayList<>());
         return new Coach(new Name(name), bannedMenus, eatenMenus);
+    }
+
+    public String getName() {
+        return name.getValue();
+    }
+
+    public boolean isNameEquals(final Name name) {
+        return Objects.equals(this.name, name);
+    }
+
+    public void updateBannedMenus(final List<String> menus) {
+        this.bannedMenus = new BannedMenus(menus);
     }
 
     @Override

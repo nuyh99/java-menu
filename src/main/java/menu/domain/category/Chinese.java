@@ -12,7 +12,7 @@ public class Chinese extends Category {
         super(number, menus);
     }
 
-    public static Chinese create() {
+    protected static Chinese create() {
         return new Chinese(number, menus);
     }
 }

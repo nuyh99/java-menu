@@ -12,7 +12,7 @@ public class American extends Category {
         super(number, menus);
     }
 
-    public static American create() {
+    protected static American create() {
         return new American(number, menus);
     }
 }

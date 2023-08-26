@@ -12,7 +12,7 @@ public class Korean extends Category {
         super(number, menus);
     }
 
-    public static Korean create() {
+    protected static Korean create() {
         return new Korean(number, menus);
     }
 }

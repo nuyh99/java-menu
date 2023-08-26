@@ -12,7 +12,7 @@ public class Asian extends Category {
         super(number, menus);
     }
 
-    public static Asian create() {
+    protected static Asian create() {
         return new Asian(number, menus);
     }
 }

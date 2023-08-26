@@ -2,6 +2,7 @@ package menu.domain;
 
 import menu.domain.category.Category;
 import menu.domain.coach.Coach;
+import menu.domain.coach.Name;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,5 +36,25 @@ public class MenuRecommender {
                 .collect(Collectors.toList());
 
         return new MenuRecommender(coaches, new ArrayList<>());
+    }
+
+    public List<String> getAllCoachNames() {
+        return coaches.stream()
+                .map(Coach::getName)
+                .collect(Collectors.toList());
+    }
+
+    public void updateBannedMenusTo(final String coachName, final List<String> bannedMenus) {
+        final Name name = new Name(coachName);
+        final Coach coach = findCoachByName(name);
+
+        coach.updateBannedMenus(bannedMenus);
+    }
+
+    private Coach findCoachByName(final Name name) {
+        return coaches.stream()
+                .filter(coach -> coach.isNameEquals(name))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하는 코치가 아닙니다."));
     }
 }

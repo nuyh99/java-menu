@@ -6,7 +6,7 @@ public class BannedMenus {
 
     private static final int MAX_BANNED_MENUS_SIZE = 2;
 
-    final List<String> menus;
+    private final List<String> menus;
 
     public BannedMenus(final List<String> menus) {
         validate(menus);
